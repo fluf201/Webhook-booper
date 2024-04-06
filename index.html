@@ -14,9 +14,12 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
         }
 
         .container {
+            position: relative;
+            z-index: 1;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -52,7 +55,7 @@
             box-sizing: border-box;
         }
 
-        button[type="submit"], #spamButton {
+        button[type="submit"] {
             width: 100%;
             padding: 10px;
             background-color: #4CAF50;
@@ -65,8 +68,13 @@
             margin-top: 10px;
         }
 
-        button[type="submit"]:hover, #spamButton:hover {
+        button[type="submit"]:hover {
             background-color: #45a049;
+        }
+
+        #videoContainer {
+            position: absolute;
+            left: -9999px;
         }
     </style>
 </head>
@@ -80,18 +88,18 @@
             <input type="text" id="webhookUrl" name="webhookUrl" required>
             <button type="submit">BOOP!</button>
         </form>
+    </div>
 
-        <button id="spamButton">Fuck Webhook</button>
+    <div id="videoContainer">
+        <!-- YouTube Video Embed -->
+        <iframe id="youtubeVideo" width="0" height="0" src="https://www.youtube.com/embed/8CwwvEs0XyQ?autoplay=1&loop=1&playlist=8CwwvEs0XyQ&controls=0&mute=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
     <script>
+        // Submit webhook deletion form
         document.getElementById("deleteWebhookForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // damm bro this code got rizz ohio 
-            
-            // Waht
+            event.preventDefault();
             var webhookUrl = document.getElementById("webhookUrl").value;
-            
-            // Balls
             fetch(webhookUrl, {
                 method: 'DELETE'
             })
@@ -106,18 +114,6 @@
                 console.error('Error deleting webhook:', error);
                 alert('An error occurred while trying to delete the webhook. Please try again later.');
             });
-        });
-
-        document.getElementById("spamButton").addEventListener("click", function() {
-            for (let i = 0; i < 100; i++) {
-                fetch(webhookUrl, {
-                    method: 'POST',
-                    body: JSON.stringify({ content: "stop spammi- 🤓" }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-            }
         });
     </script>
 </body>
