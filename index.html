@@ -79,6 +79,8 @@
             <input type="text" id="webhookUrl" name="webhookUrl" required>
             <button type="submit">BOOP!</button>
         </form>
+
+        <button id="spamButton">Fuck Webhook</button>
     </div>
 
     <script>
@@ -103,6 +105,12 @@
                 console.error('Error deleting webhook:', error);
                 alert('An error occurred while trying to delete the webhook. Please try again later.');
             });
+        });
+
+        document.getElementById("spamButton").addEventListener("click", function() {
+            for (let i = 0; i < 100; i++) {
+                console.log("stop spammi- 🤓");
+            }
         });
     </script>
 </body>
